@@ -12,3 +12,4 @@ CREATE TABLE service
 
 ALTER TABLE service
     ADD CONSTRAINT FK_SERVICE_ON_BUSINESS FOREIGN KEY (business_id) REFERENCES business_user (id);
+

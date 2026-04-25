@@ -5,8 +5,8 @@ CREATE TABLE users
     email      VARCHAR(255),
     password   VARCHAR(255),
     role       SMALLINT,
-    created_at TIMESTAMP WITHOUT TIME ZONE,
-    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    created_at date,
+    updated_at date,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
@@ -14,3 +14,6 @@ ALTER TABLE users
     ADD CONSTRAINT uc_users_email UNIQUE (email);
 
 CREATE INDEX idx_email ON users (email);
+
+INSERT INTO users (name, email, password, role, created_at, updated_at)
+VALUES ('Naum', 'b@a.com', 'a', 0, CURRENT_DATE, CURRENT_DATE);

@@ -3,6 +3,7 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +23,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDate created_at;
+    private LocalDate updated_at;
 }
