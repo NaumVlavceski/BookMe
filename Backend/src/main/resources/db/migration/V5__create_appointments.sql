@@ -16,3 +16,5 @@ ALTER TABLE appointment
 
 ALTER TABLE appointment
     ADD CONSTRAINT FK_APPOINTMENT_ON_SERVICE FOREIGN KEY (service_id) REFERENCES service (id);
+
+CREATE INDEX idx_service_id_start_time ON appointment(service_id,start_time)

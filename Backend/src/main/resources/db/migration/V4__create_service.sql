@@ -12,3 +12,5 @@ CREATE TABLE service
 
 ALTER TABLE service
     ADD CONSTRAINT FK_SERVICE_ON_BUSINESS FOREIGN KEY (business_id) REFERENCES business (id);
+
+CREATE INDEX idx_business_id ON service(business_id)

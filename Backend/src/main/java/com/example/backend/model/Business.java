@@ -3,11 +3,12 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
 @Data
-public class BusinessUser {
+public class Business {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +19,6 @@ public class BusinessUser {
     private String location;
     private String city;
     private String phone;
-    private LocalDate created_at;
+    private Timestamp created_at;
 
 }

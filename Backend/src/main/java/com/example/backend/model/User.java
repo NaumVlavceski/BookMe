@@ -3,15 +3,9 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-@Entity
-@Table(name = "Users",
-    indexes ={
-        @Index(name="idx_email",columnList = "email")
-    }
-)
+@Entity(name="User_table")
 @Data
 public class User {
     @Id
@@ -23,6 +17,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+    private Timestamp created_at;
+    private Timestamp updated_at;
 }

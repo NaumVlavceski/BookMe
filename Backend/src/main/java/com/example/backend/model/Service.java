@@ -22,6 +22,6 @@ public class Service {
     private boolean isActive;
     @ManyToOne
     @JoinColumn(name = "business_id")
-    private BusinessUser business;
+    private Business business;
 
 }
