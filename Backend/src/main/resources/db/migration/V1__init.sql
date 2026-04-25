@@ -1,0 +1,2 @@
+-- Initial migration baseline
+-- Schema will be added in subsequent migrations
