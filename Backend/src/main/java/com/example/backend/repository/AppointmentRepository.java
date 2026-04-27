@@ -9,7 +9,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
-public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
     @Query("""
                 SELECT a FROM Appointment a
                 WHERE a.service.id = :serviceId

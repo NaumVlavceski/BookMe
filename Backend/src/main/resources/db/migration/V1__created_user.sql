@@ -13,4 +13,4 @@ CREATE TABLE user_table
 ALTER TABLE user_table
     ADD CONSTRAINT uc_user_table_email UNIQUE (email);
 
-CREATE INDEX idx_email ON user_table(email)
+CREATE INDEX idx_email ON user_table(email);

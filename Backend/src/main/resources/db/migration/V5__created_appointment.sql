@@ -5,7 +5,7 @@ CREATE TABLE appointment
     service_id  BIGINT,
     start_time  TIMESTAMP WITHOUT TIME ZONE,
     end_time    TIMESTAMP WITHOUT TIME ZONE,
-    status      SMALLINT,
+    status      VARCHAR(255),
     notes       VARCHAR(255),
     created_at  TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_appointment PRIMARY KEY (id)

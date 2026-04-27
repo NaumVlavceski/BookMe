@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -17,10 +18,11 @@ public class Appointment {
     @ManyToOne
     private Service service;
 
-    private Timestamp start_time;
-    private Timestamp end_time;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private String notes;
-    private Timestamp created_at;
+    private LocalDateTime createdAt;
 
 }

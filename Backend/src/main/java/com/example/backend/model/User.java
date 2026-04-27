@@ -3,7 +3,7 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity(name="User_table")
 @Data
@@ -17,6 +17,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    private Timestamp created_at;
-    private Timestamp updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

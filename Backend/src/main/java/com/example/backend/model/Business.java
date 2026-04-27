@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -19,6 +20,6 @@ public class Business {
     private String location;
     private String city;
     private String phone;
-    private Timestamp created_at;
+    private LocalDateTime createdAt;
 
 }
