@@ -36,7 +36,7 @@ public class BusinessServiceImpl implements BusinessService{
         for(DayOfWeek day : DayOfWeek.values()) {
             Availability availability = new Availability();
             availability.setBusiness(saved);
-            availability.setDay_of_week(day);
+            availability.setDayOfWeek(day);
             availability.setOpenTime(LocalTime.of(9,0));
             availability.setCloseTime(LocalTime.of(18,0));
 

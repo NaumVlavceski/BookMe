@@ -12,4 +12,4 @@ CREATE TABLE availability
 ALTER TABLE availability
     ADD CONSTRAINT FK_AVAILABILITY_ON_BUSINESS FOREIGN KEY (business_id) REFERENCES business (id);
 
-CREATE INDEX idx_business_id ON availability(business_id)
+CREATE INDEX idx_business_id_day_of_week ON availability(business_id,day_of_week)

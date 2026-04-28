@@ -4,6 +4,7 @@ import com.example.backend.model.Business;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 public class BusinessResponseDTO {
@@ -13,7 +14,7 @@ public class BusinessResponseDTO {
     private String location;
     private String city;
     private String phone;
-    private Timestamp created_at;
+    private LocalDateTime created_at;
 
 
     public static BusinessResponseDTO fromEntity(Business business) {
@@ -24,7 +25,7 @@ public class BusinessResponseDTO {
         dto.setLocation(business.getLocation());
         dto.setCity(business.getCity());
         dto.setPhone(business.getPhone());
-        dto.setCreated_at(business.getCreated_at());
+        dto.setCreated_at(business.getCreatedAt());
         return dto;
     }
 }
