@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,6 +26,7 @@ public class AuthController {
         AuthResponseDTO response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO request) {
         AuthResponseDTO response = authService.login(request);

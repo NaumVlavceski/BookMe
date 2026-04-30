@@ -1,11 +1,10 @@
 import Header from "../components/Header.jsx";
 
-const HomePage = () => {
+const Dash = () => {
     return (
         <div>
-            <Header/>
             DASA
         </div>
     )
 }
-export default HomePage;
+export default Dash;

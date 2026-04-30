@@ -22,10 +22,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponseDTO register(RegisterRequestDTO request) {
+        System.out.println("REGISTER METHOD REACHED");
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "Email already exists"
-            );
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
         }
         String hashedPassword = passwordEncoder.encode(request.getPassword());
         User user = request.toEntity(hashedPassword);

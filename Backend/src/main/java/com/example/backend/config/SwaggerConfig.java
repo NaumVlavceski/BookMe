@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
                 version = "1.0",
                 description = "Appointment booking platform API"
         ),
-        security = @SecurityRequirement(name = "bearerAuth")  // ← add this line
+        security = @SecurityRequirement(name = "bearerAuth")
 )
 @SecurityScheme(
         name = "bearerAuth",
