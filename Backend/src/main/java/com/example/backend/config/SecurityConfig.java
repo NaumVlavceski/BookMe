@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -40,8 +41,14 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/swagger-resources/**",
-                                "/webjars/**"
+                                "/webjars/**",
+                                "/api/business",
+                                "/api/business/details/{id}"
                         ).permitAll()
+                        .requestMatchers(
+                                "/api/business/edit").hasRole("BUSINESS_OWNER")
+                        .requestMatchers(
+                                "/api/business/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter,

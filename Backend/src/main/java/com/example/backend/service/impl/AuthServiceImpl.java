@@ -3,15 +3,22 @@ package com.example.backend.service.impl;
 import com.example.backend.dto.auth.AuthResponseDTO;
 import com.example.backend.dto.auth.LoginRequestDTO;
 import com.example.backend.dto.auth.RegisterRequestDTO;
+import com.example.backend.model.Business;
+import com.example.backend.model.Role;
 import com.example.backend.model.User;
+import com.example.backend.repository.BusinessRepository;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.service.AuthService;
+import com.example.backend.service.BusinessService;
 import com.example.backend.service.JwtService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -19,17 +26,24 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final BusinessRepository businessRepository;
 
     @Override
+    @Transactional
     public AuthResponseDTO register(RegisterRequestDTO request) {
-        System.out.println("REGISTER METHOD REACHED");
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
         }
         String hashedPassword = passwordEncoder.encode(request.getPassword());
         User user = request.toEntity(hashedPassword);
         User saved = userRepository.save(user);
-
+        if (saved.getRole().equals(Role.BUSINESS_OWNER)) {
+            Business business = new Business();
+            business.setOwner(saved);
+            business.setCreatedAt(LocalDateTime.now());
+            Business savedBusiness = businessRepository.save(business);
+            System.out.println("SAVED BUSINESS ID: " + savedBusiness);
+        }
         String token = jwtService.generateToken(saved.getId(), saved.getRole().name());
         return AuthResponseDTO.fromEntity(saved, token);
     }

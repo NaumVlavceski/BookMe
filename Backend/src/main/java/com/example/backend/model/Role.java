@@ -1,5 +1,5 @@
 package com.example.backend.model;
 
 public enum Role {
-    CUSTOMER,BUSINESS_OWNER
+    CUSTOMER,BUSINESS_OWNER,ADMIN
 }

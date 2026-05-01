@@ -12,6 +12,8 @@ CREATE TABLE business
 );
 
 ALTER TABLE business
-    ADD CONSTRAINT FK_BUSINESS_ON_OWNER FOREIGN KEY (owner_id) REFERENCES user_table (id);
+    ADD CONSTRAINT uc_business_owner UNIQUE (owner_id);
 
-CREATE INDEX idx_owner_id ON business(owner_id)
+ALTER TABLE business
+    ADD CONSTRAINT FK_BUSINESS_ON_OWNER FOREIGN KEY (owner_id) REFERENCES user_table (id);
+CREATE INDEX idx_owner_id ON business (owner_id);

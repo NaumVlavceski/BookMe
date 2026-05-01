@@ -14,6 +14,7 @@ public class Business {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
     private User owner;
     private String name;
     private String description;
