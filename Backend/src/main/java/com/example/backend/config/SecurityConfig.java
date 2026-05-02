@@ -42,13 +42,18 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/swagger-resources/**",
                                 "/webjars/**",
-                                "/api/business",
-                                "/api/business/details/{id}"
+                                "/api/businesses",
+                                "/api/businesses/details/{id}",
+                                "/api/businesses/{businessId}/services",
+                                "/api/businesses/{businessId}/services/{serviceId}"
                         ).permitAll()
                         .requestMatchers(
-                                "/api/business/edit").hasRole("BUSINESS_OWNER")
+                                "/api/businesses/edit",
+                                "/api/businesses/services/create",
+                                "/api/businesses/update/services/{serviceId}",
+                                "/api/businesses/delete/services/{serviceId}").hasRole("BUSINESS_OWNER")
                         .requestMatchers(
-                                "/api/business/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
+                                "/api/businesses/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter,

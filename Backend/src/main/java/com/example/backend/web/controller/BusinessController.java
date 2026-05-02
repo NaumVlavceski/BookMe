@@ -20,7 +20,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/business")
+@RequestMapping("/api/businesses")
 @AllArgsConstructor
 public class BusinessController {
     private final BusinessService businessService;

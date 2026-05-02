@@ -4,6 +4,7 @@ import com.example.backend.model.Service;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class ServiceResponseDTO {
@@ -26,5 +27,8 @@ public class ServiceResponseDTO {
         dto.setActive(service.isActive());
         dto.setBusinessId(service.getBusiness().getId());
         return dto;
+    }
+    public static List<ServiceResponseDTO> fromEntities(List<Service> services) {
+        return services.stream().map(ServiceResponseDTO::fromEntity).toList();
     }
 }
