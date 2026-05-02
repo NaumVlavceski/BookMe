@@ -43,7 +43,8 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**",
                                 "/api/business",
-                                "/api/business/details/{id}"
+                                "/api/business/details/{id}",
+                                "/api/availability/**"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/business/edit").hasRole("BUSINESS_OWNER")

@@ -12,8 +12,6 @@ import java.security.Principal;
 import java.util.List;
 
 public interface BusinessService {
-        BusinessResponseDTO createBusiness(BusinessRequestDTO request, User owner);
-
     Page<BusinessResponseDTO> findAllBusinesses(String name, String city, Pageable pageable);
     BusinessResponseDTO detailsBusiness(Long id);
     BusinessResponseDTO editBusiness(Long id,BusinessRequestDTO request);

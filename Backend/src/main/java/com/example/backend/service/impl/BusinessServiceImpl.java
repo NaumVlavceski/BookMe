@@ -28,34 +28,8 @@ import java.util.List;
 @AllArgsConstructor
 public class BusinessServiceImpl implements BusinessService {
     private final BusinessRepository businessRepository;
-    private final AvailabilityRepository availabilityRepository;
+
     private final UserRepository userRepository;
-
-    @Transactional
-    public BusinessResponseDTO createBusiness(BusinessRequestDTO request, User owner) {
-        Business saved = businessRepository.save(request.toEntity(owner));
-        seedDefaultAvailability(saved);
-        return BusinessResponseDTO.fromEntity(saved);
-    }
-
-    private void seedDefaultAvailability(Business saved) {
-        List<Availability> defaults = new ArrayList<>();
-
-        for (DayOfWeek day : DayOfWeek.values()) {
-            Availability availability = new Availability();
-            availability.setBusiness(saved);
-            availability.setDayOfWeek(day);
-            availability.setOpenTime(LocalTime.of(9, 0));
-            availability.setCloseTime(LocalTime.of(18, 0));
-
-            boolean isWeekend = day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
-
-            availability.setActive(isWeekend);
-
-            defaults.add(availability);
-        }
-        availabilityRepository.saveAll(defaults);
-    }
 
     @Override
     public Page<BusinessResponseDTO> findAllBusinesses(String name, String city, Pageable pageable) {
