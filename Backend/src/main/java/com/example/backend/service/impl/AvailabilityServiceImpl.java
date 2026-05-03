@@ -29,16 +29,24 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
     @Override
     public AvailabilityResponseDTO updateAvailability(AvailabilityRequestDTO availabilityRequestDTO, Long userId) {
-//        Business business = businessRepository.findById(businessId).get();
-//        User user = userRepository.findById(business.getOwner().getId()).get();
         Business business = businessRepository.findByOwner_Id(userId);
-        Availability availability = availabilityRepository.findByBusinessIdAndDayOfWeek(business.getId(), availabilityRequestDTO.getDayOfWeek());
-        if (availabilityRequestDTO.getOpenTime().isAfter(availability.getCloseTime())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Open time cannot be after Closed time");
+        if (business == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Business not found for this user");
         }
-        availability.setActive(availabilityRequestDTO.isActive());
+        Availability availability = availabilityRepository.findByBusinessIdAndDayOfWeek(business.getId(), availabilityRequestDTO.getDayOfWeek());
+        if (availability == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Availability not found for this day");
+        }
+        if (availabilityRequestDTO.getOpenTime().isAfter(availabilityRequestDTO.getCloseTime())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Open time cannot be after close time"
+            );
+        }
         availability.setOpenTime(availabilityRequestDTO.getOpenTime());
         availability.setCloseTime(availabilityRequestDTO.getCloseTime());
+        availability.setActive(availabilityRequestDTO.isActive());
         return AvailabilityResponseDTO.fromEntity(availabilityRepository.save(availability));
     }
 
