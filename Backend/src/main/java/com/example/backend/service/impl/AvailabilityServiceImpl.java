@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -34,16 +35,18 @@ public class AvailabilityServiceImpl implements AvailabilityService {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Business not found for this user");
         }
-        Availability availability = availabilityRepository.findByBusinessIdAndDayOfWeek(business.getId(), availabilityRequestDTO.getDayOfWeek());
-        if (availability == null) {
+        Optional<Availability> availabilityOpt = availabilityRepository.findByBusinessIdAndDayOfWeek(business.getId(), availabilityRequestDTO.getDayOfWeek());
+        if (availabilityOpt.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Availability not found for this day");
         }
+        Availability availability =  availabilityOpt.get();
         if (availabilityRequestDTO.getOpenTime().isAfter(availabilityRequestDTO.getCloseTime())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Open time cannot be after close time"
             );
         }
+
         availability.setOpenTime(availabilityRequestDTO.getOpenTime());
         availability.setCloseTime(availabilityRequestDTO.getCloseTime());
         availability.setActive(availabilityRequestDTO.isActive());
