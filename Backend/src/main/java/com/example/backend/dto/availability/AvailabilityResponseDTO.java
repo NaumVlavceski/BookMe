@@ -8,7 +8,9 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 public class AvailabilityResponseDTO {
@@ -28,5 +30,9 @@ public class AvailabilityResponseDTO {
         dto.setCloseTime(availability.getCloseTime());
         dto.setActive(availability.isActive());
         return dto;
+    }
+
+    public static List<AvailabilityResponseDTO> fromEntities(List<Availability> availabilities) {
+        return availabilities.stream().map(AvailabilityResponseDTO::fromEntity).toList();
     }
 }

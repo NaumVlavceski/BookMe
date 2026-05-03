@@ -45,13 +45,15 @@ public class SecurityConfig {
                                 "/api/businesses",
                                 "/api/businesses/details/{id}",
                                 "/api/businesses/{businessId}/services",
-                                "/api/businesses/{businessId}/services/{serviceId}"
+                                "/api/businesses/{businessId}/services/{serviceId}",
+                                "/api/availability/**"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/businesses/edit",
                                 "/api/businesses/services/create",
                                 "/api/businesses/update/services/{serviceId}",
-                                "/api/businesses/delete/services/{serviceId}").hasRole("BUSINESS_OWNER")
+                                "/api/businesses/delete/services/{serviceId}",
+                                "/api/availability/edit").hasRole("BUSINESS_OWNER")
                         .requestMatchers(
                                 "/api/businesses/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
                         .anyRequest().authenticated()
