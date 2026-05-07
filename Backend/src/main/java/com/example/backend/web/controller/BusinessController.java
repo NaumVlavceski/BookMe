@@ -1,9 +1,11 @@
 package com.example.backend.web.controller;
 
+import com.example.backend.dto.appointment.AppointmentResponseDTO;
 import com.example.backend.dto.business.BusinessRequestDTO;
 import com.example.backend.dto.business.BusinessResponseDTO;
 import com.example.backend.model.Business;
 import com.example.backend.model.User;
+import com.example.backend.service.AppointmentsService;
 import com.example.backend.service.BusinessService;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.Response;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -24,6 +27,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BusinessController {
     private final BusinessService businessService;
+    private final AppointmentsService appointmentsService;
 
     @GetMapping
     public ResponseEntity<Page<BusinessResponseDTO>> findAllBusinesses(
@@ -47,5 +51,10 @@ public class BusinessController {
     public void deleteBusiness(@PathVariable Long id,Principal principal) {
         System.out.println("CHECKK:"+principal.getName());
         businessService.deleteBusiness(Long.valueOf(principal.getName()),id);
+    }
+
+    @GetMapping("/bookedAppointments")
+    public ResponseEntity<List<AppointmentResponseDTO>> findBookedAppointments(Principal principal, @RequestParam LocalDate date) {
+        return ResponseEntity.ok(appointmentsService.findBookedAppointments(Long.valueOf(principal.getName()),date));
     }
 }

@@ -2,6 +2,7 @@ package com.example.backend.repository;
 
 import com.example.backend.model.Appointment;
 import com.example.backend.model.Status;
+import com.example.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,4 +30,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     );
 
     List<Appointment> findByServiceIdAndStartTimeBetweenAndStatusNot(Long serviceId, LocalDateTime startTime, LocalDateTime endTime, Status status);
+
+    List<Appointment> findAllByCustomer_Id(Long customerId);
+
+    boolean existsAppointmentsByStartTimeAndServiceId(LocalDateTime startTime, Long serviceId);
+
+    List<Appointment> findAppointmentsByBusinessIdAndStartTimeBetweenAndStatusNot(Long business_id, LocalDateTime startTime,LocalDateTime endTime, Status status);
 }

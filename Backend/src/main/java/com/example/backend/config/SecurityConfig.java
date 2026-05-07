@@ -54,7 +54,8 @@ public class SecurityConfig {
                                 "/api/businesses/services/create",
                                 "/api/businesses/update/services/{serviceId}",
                                 "/api/businesses/delete/services/{serviceId}",
-                                "/api/availability/edit").hasRole("BUSINESS_OWNER")
+                                "/api/availability/edit",
+                                "/api/businesses/bookedAppointments").hasRole("BUSINESS_OWNER")
                         .requestMatchers(
                                 "/api/businesses/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
                         .anyRequest().authenticated()

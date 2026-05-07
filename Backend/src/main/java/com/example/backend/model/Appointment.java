@@ -17,6 +17,8 @@ public class Appointment {
     @ManyToOne
     private Service service;
 
+    @ManyToOne
+    private Business business;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     @Enumerated(EnumType.STRING)
