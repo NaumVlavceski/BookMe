@@ -11,17 +11,18 @@ import java.time.LocalDateTime;
 
 @Data
 public class AppointmentRequestDTO {
-    private Long serviceId;
+//    private Long serviceId;
     private LocalDateTime startTime;
-    private LocalDateTime endTime; //
+//    private LocalDateTime endTime; //
     private String notes;
 
     public Appointment toEntity(User customer, Service service) {
         Appointment appointment = new Appointment();
         appointment.setCustomer(customer);
         appointment.setService(service);
+        appointment.setBusiness(service.getBusiness());
         appointment.setStartTime(this.startTime);
-        appointment.setEndTime(this.endTime); //
+        appointment.setEndTime(this.startTime.plusMinutes(service.getDuration()));
         appointment.setNotes(this.notes);
         appointment.setStatus(Status.PENDING);
         appointment.setCreatedAt(LocalDateTime.now());
