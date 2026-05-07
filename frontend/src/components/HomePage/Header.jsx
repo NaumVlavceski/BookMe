@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Register from "./Register.jsx";
 import Login from "./Login.jsx";
-import {useAuth} from "../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);

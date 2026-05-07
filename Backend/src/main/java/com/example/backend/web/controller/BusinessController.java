@@ -35,6 +35,10 @@ public class BusinessController {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return ResponseEntity.ok(businessService.findAllBusinesses(search, city, pageable));
     }
+    @GetMapping("/me")
+    public ResponseEntity<BusinessResponseDTO> myDetailsBusinesses(Principal principal) {
+        return ResponseEntity.ok(businessService.myDetailsBusiness(Long.valueOf(principal.getName())));
+    }
     @GetMapping("/details/{id}")
     public ResponseEntity<BusinessResponseDTO> detailsBusiness(@PathVariable Long id) {
         return ResponseEntity.ok(businessService.detailsBusiness(id));

@@ -64,6 +64,12 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public BusinessResponseDTO myDetailsBusiness(Long id) {
+        Business business = businessRepository.findByOwner_Id(id);
+        return BusinessResponseDTO.fromEntity(business);
+    }
+
+    @Override
     public void deleteBusiness(Long user_id, Long business_id) {
         User user = userRepository.findById(user_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         Business business = businessRepository.findById(business_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Business not found"));

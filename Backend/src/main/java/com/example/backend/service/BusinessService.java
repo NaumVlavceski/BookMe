@@ -15,6 +15,6 @@ public interface BusinessService {
     Page<BusinessResponseDTO> findAllBusinesses(String name, String city, Pageable pageable);
     BusinessResponseDTO detailsBusiness(Long id);
     BusinessResponseDTO editBusiness(Long id,BusinessRequestDTO request);
-
+    BusinessResponseDTO myDetailsBusiness(Long id);
     void deleteBusiness(Long user_id,Long business_id);
 }

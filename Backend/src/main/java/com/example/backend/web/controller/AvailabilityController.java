@@ -17,8 +17,8 @@ public class AvailabilityController {
 
     private final AvailabilityService availabilityService;
 
-    @GetMapping
-    public ResponseEntity<List<AvailabilityResponseDTO>> findAllAvailabilityByBusinessId(Long businessId) {
+    @GetMapping("/{businessId}")
+    public ResponseEntity<List<AvailabilityResponseDTO>> findAllAvailabilityByBusinessId(@PathVariable Long businessId) {
         return ResponseEntity.ok(availabilityService.findAllAvailability(businessId));
     }
 

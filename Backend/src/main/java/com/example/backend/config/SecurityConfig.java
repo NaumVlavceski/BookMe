@@ -46,7 +46,7 @@ public class SecurityConfig {
                                 "/api/businesses/details/{id}",
                                 "/api/businesses/{businessId}/services",
                                 "/api/businesses/{businessId}/services/{serviceId}",
-                                "/api/availability",
+                                "/api/availability/{businessId}",
                                 "/api/SlotGeneration/**"
                         ).permitAll()
                         .requestMatchers(

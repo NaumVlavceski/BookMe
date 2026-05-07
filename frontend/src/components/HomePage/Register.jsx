@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {register} from "../services/AuthService.js";
+import {register} from "../../services/AuthService.js";
 import {useNavigate} from "react-router-dom";
 
 const Register = ({modalType, login}) => {
