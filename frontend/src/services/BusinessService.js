@@ -6,6 +6,9 @@ const BusinessService = {
     },
     findAllBusinesses: async () => {
         return await api.get(`/api/businesses`)
+    },
+    findBookedAppointments: async () =>{
+      return await api.get(`/api/businesses/bookedAppointments`)
     }
 }
 export default BusinessService;
