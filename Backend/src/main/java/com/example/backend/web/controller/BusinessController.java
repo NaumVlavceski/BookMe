@@ -58,7 +58,7 @@ public class BusinessController {
     }
 
     @GetMapping("/bookedAppointments")
-    public ResponseEntity<List<AppointmentResponseDTO>> findBookedAppointments(Principal principal, @RequestParam LocalDate date) {
+    public ResponseEntity<List<AppointmentResponseDTO>> findBookedAppointments(Principal principal, @RequestParam(required = false) LocalDate date) {
         return ResponseEntity.ok(appointmentsService.findBookedAppointments(Long.valueOf(principal.getName()),date));
     }
 }

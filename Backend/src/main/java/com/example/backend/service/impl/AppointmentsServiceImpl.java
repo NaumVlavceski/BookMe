@@ -64,6 +64,9 @@ public class AppointmentsServiceImpl implements AppointmentsService {
     @Override
     public List<AppointmentResponseDTO> findBookedAppointments(Long userId, LocalDate date) {
         Business business = businessRepository.findByOwner_Id(userId);
+        if (date == null) {
+            return AppointmentResponseDTO.fromEntities(appointmentRepository.findByBusinessId(business.getId()));
+        }
         LocalDateTime startTime = date.atStartOfDay();
         LocalDateTime endTime = date.atTime(23,59,59);
         List<Appointment> appointments = appointmentRepository.findAppointmentsByBusinessIdAndStartTimeBetweenAndStatusNot(business.getId(),startTime,endTime, Status.CANCELLED);

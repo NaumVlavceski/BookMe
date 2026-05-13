@@ -47,7 +47,9 @@ public class SecurityConfig {
                                 "/api/businesses/{businessId}/services",
                                 "/api/businesses/{businessId}/services/{serviceId}",
                                 "/api/availability/{businessId}",
-                                "/api/SlotGeneration/**"
+                                "/api/SlotGeneration/**",
+                                "/api/appointments",
+                                "/api/appointments/me"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/businesses/edit",
@@ -55,7 +57,8 @@ public class SecurityConfig {
                                 "/api/businesses/update/services/{serviceId}",
                                 "/api/businesses/delete/services/{serviceId}",
                                 "/api/availability/edit",
-                                "/api/businesses/bookedAppointments").hasRole("BUSINESS_OWNER")
+                                "/api/businesses/bookedAppointments"
+                        ).hasRole("BUSINESS_OWNER")
                         .requestMatchers(
                                 "/api/businesses/delete").hasAnyRole("BUSINESS_OWNER", "ADMIN")
                         .anyRequest().authenticated()

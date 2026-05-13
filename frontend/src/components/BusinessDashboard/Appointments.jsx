@@ -3,13 +3,7 @@ import useServices from "../../hooks/useServices.jsx";
 import {useState} from "react";
 
 const Appointments = ({business}) => {
-    // const now =  new Date().toLocaleDateString();
-    // const year = now.split("/")[2];
-    // const month = now.split("/")[1];
-    // const day = now.split("/")[0];
-    // const correctDate = `${year}-${month}-${day}`;
     const {appointments, loading} = useAppointments();
-    // console.log(appointments);
     const {services} = useServices(business);
     const filters = [
         { key: "ALL",       label: "All",       count: appointments?.length ?? 0 },
@@ -51,7 +45,8 @@ const Appointments = ({business}) => {
                 })}
             </div>
             {visible.map(a => {
-                const service = services.find(s => s.id === a.serviceId); // ← find by serviceId
+                const service = services.find(s => s.id === a.serviceId);
+                const date = a.startTime.split("T")[0]
                 const hours = a.startTime.split("T")[1].split(":")[0];
                 const minutes = a.startTime.split("T")[1].split(":")[1];
                 return (
@@ -65,7 +60,7 @@ const Appointments = ({business}) => {
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-900 truncate">{a.customerName}</p>
                             <p className="text-xs text-gray-400">
-                                {service?.name ?? "Unknown service"} · {service?.duration} min · {a.date}
+                                {service?.name ?? "Unknown service"} · {service?.duration} min · {date}
                             </p>
                         </div>
                         <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${STATUS_STYLES[a.status]}`}>

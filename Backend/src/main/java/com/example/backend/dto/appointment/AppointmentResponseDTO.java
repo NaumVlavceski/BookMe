@@ -14,9 +14,9 @@ import java.util.List;
 @Data
 public class AppointmentResponseDTO {
     private Long id;
-    private Long customerId;
+    private String customerName;
+    private String serviceName;
     private Long serviceId;
-    private Long businessId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Status status;
@@ -28,9 +28,9 @@ public class AppointmentResponseDTO {
     public static AppointmentResponseDTO fromEntity(Appointment appointment) {
         AppointmentResponseDTO dto = new AppointmentResponseDTO();
         dto.setId(appointment.getId());
-        dto.setCustomerId(appointment.getCustomer().getId());
+        dto.setCustomerName(appointment.getCustomer().getName());
+        dto.setServiceName(appointment.getService().getName());
         dto.setServiceId(appointment.getService().getId());
-        dto.setBusinessId(appointment.getBusiness().getId());
         dto.setStartTime(appointment.getStartTime());
         dto.setEndTime(appointment.getEndTime());
         dto.setStatus(appointment.getStatus());
