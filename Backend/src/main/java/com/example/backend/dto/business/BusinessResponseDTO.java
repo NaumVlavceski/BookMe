@@ -1,6 +1,7 @@
 package com.example.backend.dto.business;
 
 import com.example.backend.model.Business;
+import com.example.backend.model.BusinessCategory;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -16,7 +17,7 @@ public class BusinessResponseDTO {
     private String location;
     private String city;
     private String phone;
-
+    private BusinessCategory businessCategory;
 
     public static BusinessResponseDTO fromEntity(Business business) {
         BusinessResponseDTO dto = new BusinessResponseDTO();
@@ -27,6 +28,7 @@ public class BusinessResponseDTO {
         dto.setLocation(business.getLocation());
         dto.setCity(business.getCity());
         dto.setPhone(business.getPhone());
+        dto.setBusinessCategory(business.getBusinessCategory());
         return dto;
     }
     public static List<BusinessResponseDTO> fromList(List<Business> businesses) {

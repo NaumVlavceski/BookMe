@@ -59,7 +59,7 @@ public class BusinessServiceImpl implements BusinessService {
         business.setCity(request.getCity());
         business.setPhone(request.getPhone());
         business.setLocation(request.getLocation());
-
+        business.setBusinessCategory(request.getBusinessCategory());
         return BusinessResponseDTO.fromEntity(businessRepository.save(business));
     }
 

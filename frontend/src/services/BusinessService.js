@@ -9,6 +9,12 @@ const BusinessService = {
     },
     findBookedAppointments: async () =>{
       return await api.get(`/api/businesses/bookedAppointments`)
+    },
+    editBusinesses: async (data) => {
+        return await api.put(`/api/businesses/edit`,data)
+    },
+    deleteBusiness: async (id) =>{
+        return await api.delete(`/api/businesses/delete/${id}`)
     }
 }
 export default BusinessService;

@@ -23,8 +23,10 @@ const Register = ({modalType, login}) => {
         try {
             if (formData.password !== formData.repeatPassword) {
                 setError("Passwords don't match");
+                return;
             } else if (formData.password.length <= 8) {
                 setError("Password must be at least 8 characters long");
+                return;
             }
             const data = await register(formData.username, formData.email, formData.password, formData.role);
             const loggedUser = await login(formData.email, formData.password);

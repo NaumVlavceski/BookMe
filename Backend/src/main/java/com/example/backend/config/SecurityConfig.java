@@ -49,7 +49,8 @@ public class SecurityConfig {
                                 "/api/availability/{businessId}",
                                 "/api/SlotGeneration/**",
                                 "/api/appointments",
-                                "/api/appointments/me"
+                                "/api/appointments/me",
+                                "/api/enums/**"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/businesses/edit",

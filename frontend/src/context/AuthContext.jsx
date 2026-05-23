@@ -1,11 +1,18 @@
 import {createContext, useContext, useState} from "react";
 import {login as loginService, logout as logoutService} from "../services/AuthService";
-
+import {isTokenExpired} from "../services/api.js"
 const AuthContext = createContext(null);
 
 export function AuthProvider({children}) {
     const [user, setUser] = useState(() => {
         const saved = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+
+        if (!token || isTokenExpired(token)){
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            return null;
+        }
         return saved ? JSON.parse(saved) : null;
     });
     const login = async (email, password) => {
@@ -25,6 +32,7 @@ export function AuthProvider({children}) {
     const logout = async () => {
         logoutService();
         setUser(null);
+        window.redirect("/");
     };
 
     return (
